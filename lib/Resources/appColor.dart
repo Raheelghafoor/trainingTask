@@ -1,4 +1,4 @@
-import 'dart:ui';
+
 
 import 'package:flutter/material.dart';
 
@@ -8,4 +8,6 @@ class AppColors{
   var textColor = const Color(0xFF333333);
   var gray =Colors.grey[200];
   var black = Colors.black;
+  var whiteColor =const Color(0xFFFFFFFF);
+  Color gry = Colors.grey;
 }

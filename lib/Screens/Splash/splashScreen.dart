@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:training_task/Resources/resoures.dart';
+import 'package:training_task/Resources/resources.dart';
 
 
 import '../Auth/View/signUpScreen.dart';
@@ -23,7 +23,7 @@ class _SplashState extends State<Splash> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Image.asset(Resource.image.logo),
+        child: Image.asset(Resources.images.logo),
       ),
     );
   }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../Resources/resoures.dart';
+import 'package:training_task/Resources/resources.dart';
 
 class CustomTextField extends StatelessWidget {
   final String hintText;
@@ -49,8 +49,8 @@ class CustomTextField extends StatelessWidget {
         )
             : null,
         filled: true,
-        fillColor: Resource.colors.gray,
-        errorStyle: TextStyle(fontSize: 15.0, color: Resource.colors.mainColor),
+        fillColor: Resources.colors.gray,
+        errorStyle: TextStyle(fontSize: 15.0, color: Resources.colors.mainColor),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.grey),
           borderRadius: BorderRadius.circular(10.0),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:training_task/CustomWidgets/customButton.dart';
-import '../../../CustomWidgets/customText.dart';
+import 'package:training_task/CustomWidgets/customtext.dart';
+import 'package:training_task/Resources/resources.dart';
+import 'package:training_task/Utills/validator.dart';
 import '../../../CustomWidgets/customTextFiled.dart';
-import '../../../Resources/resoures.dart';
-import '../../../Utills/validator.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -34,24 +34,24 @@ class _SignUpState extends State<SignUp> {
                 SizedBox(height: appSize.height * 0.03),
                 Center(
                   child: CustomText(
-                    title: Resource.text.create,
-                    textColor: Resource.colors.mainColor,
+                    title: Resources.texts.create,
+                    textColor: Resources.colors.mainColor,
                     fontSize: appSize.height * 0.040,
                     textAlign: TextAlign.center,
                     isBold: true,
                   ),
                 ),
                 CustomText(
-                  title: Resource.text.fill,
-                  textColor: Resource.colors.black,
+                  title: Resources.texts.fill,
+                  textColor: Resources.colors.black,
                   fontSize: appSize.height * 0.023,
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: appSize.height * 0.07),
 
                 CustomText(
-                  title: Resource.text.email,
-                  textColor: Resource.colors.black,
+                  title: Resources.texts.email,
+                  textColor: Resources.colors.black,
                   fontSize: appSize.height * 0.022,
                   textAlign: TextAlign.center,
                 ),
@@ -63,12 +63,12 @@ class _SignUpState extends State<SignUp> {
                   validator: FieldValidator.validateEmail,
                   keyboardType: TextInputType.emailAddress,
                   hintTextColor: Colors.grey,
-                  prefixIconColor: Resource.colors.mainColor,
+                  prefixIconColor: Resources.colors.mainColor,
                 ),
                 SizedBox(height: appSize.height * 0.02),
                 CustomText(
-                  title: Resource.text.password,
-                  textColor: Resource.colors.black,
+                  title: Resources.texts.password,
+                  textColor: Resources.colors.black,
                   fontSize: appSize.height * 0.022,
                   textAlign: TextAlign.center,
                 ),
@@ -86,14 +86,14 @@ class _SignUpState extends State<SignUp> {
                     });
                   },
                   hintTextColor: Colors.grey,
-                  prefixIconColor: Resource.colors.mainColor,
-                  suffixIconColor: Resource.colors.mainColor,
+                  prefixIconColor: Resources.colors.mainColor,
+                  suffixIconColor: Resources.colors.mainColor,
                 ),
                 SizedBox(height: appSize.height * 0.02),
                 Row(
                   children: [
                     Checkbox(
-                      fillColor: MaterialStateProperty.all(Resource.colors.mainColor),
+                      fillColor: MaterialStateProperty.all(Resources.colors.mainColor),
                       value: _isTermsAccepted,
                       onChanged: (value) {
                         setState(() {
@@ -109,7 +109,7 @@ class _SignUpState extends State<SignUp> {
                       },
                       child: CustomText(
                         title: "Agree with Terms & Conditions",
-                        textColor: Resource.colors.mainColor,
+                        textColor: Resources.colors.mainColor,
                         fontSize: appSize.height * 0.02,
                         textAlign: TextAlign.left,
                       ),
@@ -118,9 +118,9 @@ class _SignUpState extends State<SignUp> {
                 ),
                 SizedBox(height: appSize.height * 0.05),
                 CustomButton(
-                  text: Resource.text.signUp,
+                  text: Resources.texts.signUp,
                   textColor: Colors.white,
-                  backgroundColor: Resource.colors.mainColor,
+                  backgroundColor: Resources.colors.mainColor,
                   fontSize: appSize.height * 0.026,
                   isBold: true,
                   borderRadius: appSize.height * 0.030,
@@ -130,16 +130,16 @@ class _SignUpState extends State<SignUp> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Image.asset(Resource.image.line),
+                    Image.asset(Resources.images.line),
                     Center(
                       child: CustomText(
-                        title: Resource.text.signUpWith,
-                        textColor: Resource.colors.black,
+                        title: Resources.texts.signUpWith,
+                        textColor: Resources.colors.black,
                         fontSize: appSize.height * 0.020,
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    Image.asset(Resource.image.line),
+                    Image.asset(Resources.images.line),
                   ],
                 ),
                 SizedBox(height: appSize.height * 0.05),
@@ -209,8 +209,8 @@ class _SignUpState extends State<SignUp> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CustomText(
-                      title: Resource.text.already,
-                      textColor: Resource.colors.mainColor,
+                      title: Resources.texts.already,
+                      textColor: Resources.colors.mainColor,
                       fontSize: appSize.height * 0.02,
                       textAlign: TextAlign.center,
                     ),
@@ -218,8 +218,8 @@ class _SignUpState extends State<SignUp> {
                       onTap: () {
                       },
                       child: CustomText(
-                        title: Resource.text.signUp,
-                        textColor: Resource.colors.mainColor,
+                        title: Resources.texts.signUp,
+                        textColor: Resources.colors.mainColor,
                         fontSize: appSize.height * 0.02,
                         textAlign: TextAlign.center,
                       ),
