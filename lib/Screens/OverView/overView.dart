@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:swipeable_button_view/swipeable_button_view.dart';
 import 'package:traning_task/CustomWidgets/customButton.dart';
-import 'package:traning_task/Resources/resources.dart';
 
 import '../../CustomWidgets/customtext.dart';
+import '../../Resource/resources.dart';
 
 class OverView extends StatefulWidget {
   const OverView({super.key});
@@ -27,10 +27,10 @@ class _OverViewState extends State<OverView> {
                   child: Column(
                     children: [
                       SizedBox(height: appSize.height*0.060,),
-                      CustomText(title: Resources.texts.express, textColor: Resources.colors.textColor,
+                      CustomText(title: Resource.texts.express, textColor: Resource.colors.textColor,
                           fontSize: appSize.height*0.052 , textAlign: TextAlign.start, isBold: false ),
                       SizedBox(height: appSize.height*0.010,),
-                      CustomText(title: Resources.texts.rent, textColor: Resources.colors.textColor,
+                      CustomText(title: Resource.texts.rent, textColor: Resource.colors.textColor,
                           fontSize: appSize.height*0.020 , textAlign: TextAlign.start, isBold: false ),
                     ],
                   ),
@@ -40,7 +40,7 @@ class _OverViewState extends State<OverView> {
                 Container(
                   child: Column(
                     children: [
-                      Image.asset(Resources.images.car),
+                      Image.asset(Resource.images.car),
                     ],
                   ),
                 ),
@@ -53,7 +53,7 @@ class _OverViewState extends State<OverView> {
                        Padding(
                          padding: const EdgeInsets.symmetric(horizontal: 30.0),
                          child: SwipeableButtonView(
-                           buttonText: Resources.texts.slid,
+                           buttonText: Resource.texts.slid,
                            buttonWidget: Container(
                              child: Icon(
                                Icons.arrow_forward_ios_rounded,
@@ -80,8 +80,8 @@ class _OverViewState extends State<OverView> {
                        SizedBox(height: appSize.height*0.040,),
                        Padding(
                          padding: const EdgeInsets.only(left: 30,right: 30),
-                         child: CustomButton(text: Resources.texts.already,
-                             textColor: Resources.colors.whiteColor, backgroundColor: Resources.colors.primaryColor,
+                         child: CustomButton(text: Resource.texts.already,
+                             textColor: Resource.colors.whiteColor, backgroundColor: Resource.colors.primaryColor,
                              fontSize: 18, borderRadius: 30 , onPressed: (){}),
                        ),
                        SizedBox(height: appSize.height*0.040,),
@@ -100,5 +100,3 @@ class _OverViewState extends State<OverView> {
     );
   }
 }
-// SizedBox(height: appSize.height*0.060,),
-// Container(child: Image.asset(Resources.images.car),),

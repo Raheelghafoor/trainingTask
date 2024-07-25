@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:traning_task/Resources/resources.dart';
 
+import '../../Resource/resources.dart';
 import '../Overview/overView.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Image.asset(Resources.images.logo),
+        child: Image.asset(Resource.images.logo),
       ),
     );
   }
