@@ -1,11 +1,11 @@
 
 import 'package:traning_task/Resource/appColor.dart';
 
-import 'appimage.dart';
-import 'apptext.dart';
+import 'appImage.dart';
+import 'appText.dart';
 
 class Resource{
-  static AppColors colors = AppColors();
+  static AppColor colors = AppColor();
   static AppText  texts = AppText();
   static AppImages images =AppImages();
 }
