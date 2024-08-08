@@ -1,32 +1,27 @@
 import 'package:flutter/material.dart';
-import '../Resources/resoures.dart';
+
+import '../Resources/resource.dart';
 
 class CustomTextField extends StatelessWidget {
   final String hintText;
   final TextEditingController controller;
-  final IconData? prefixIcon;
-  final IconData? suffixIcon;
   final bool obscureText;
   final String? Function(String?)? validator;
   final TextInputType keyboardType;
-  final VoidCallback? onSuffixIconPressed;
   final Color hintTextColor;
-  final Color prefixIconColor;
-  final Color suffixIconColor;
+  final IconData? prefixIcon;
+  final int maxLines;
 
   CustomTextField({
     super.key,
     required this.hintText,
     required this.controller,
-    this.prefixIcon,
-    this.suffixIcon,
-    required this.obscureText,
+    this.obscureText = false,
     this.validator,
     required this.keyboardType,
-    this.onSuffixIconPressed,
     this.hintTextColor = Colors.grey,
-    this.prefixIconColor = Colors.grey,
-    this.suffixIconColor = Colors.grey,
+    this.prefixIcon,
+    this.maxLines = 1, // Default value for maxLines
   });
 
   @override
@@ -36,35 +31,28 @@ class CustomTextField extends StatelessWidget {
       obscureText: obscureText,
       keyboardType: keyboardType,
       validator: validator,
+      maxLines: maxLines,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStyle(color: hintTextColor),
-        prefixIcon: prefixIcon != null
-            ? Icon(prefixIcon, color: prefixIconColor)
-            : null,
-        suffixIcon: suffixIcon != null
-            ? IconButton(
-          icon: Icon(suffixIcon, color: suffixIconColor),
-          onPressed: onSuffixIconPressed,
-        )
-            : null,
+        prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
         filled: true,
-        fillColor: Resource.colors.gray,
+        fillColor: Resource.colors.feild,
         errorStyle: TextStyle(fontSize: 15.0, color: Resource.colors.mainColor),
         enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.grey),
+          borderSide: BorderSide.none,
           borderRadius: BorderRadius.circular(10.0),
         ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.grey),
+          borderSide: BorderSide.none,
           borderRadius: BorderRadius.circular(10.0),
         ),
         errorBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.grey),
+          borderSide: BorderSide.none,
           borderRadius: BorderRadius.circular(10.0),
         ),
         disabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.grey),
+          borderSide: BorderSide.none,
           borderRadius: BorderRadius.circular(10.0),
         ),
       ),

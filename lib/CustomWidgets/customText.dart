@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
 class CustomText extends StatelessWidget {
+
   final String title;
   final Color textColor;
   final double fontSize;
   final TextAlign textAlign;
   final bool isBold;
 
-  const CustomText({
-    super.key,
+
+  CustomText({
+    required this.title,
     required this.textColor,
     required this.fontSize,
     required this.textAlign,
-    required this.title,
-    this.isBold = false,
-  });
+    required this.isBold});
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +22,12 @@ class CustomText extends StatelessWidget {
       title,
       textAlign: textAlign,
       style: TextStyle(
-        color: textColor,
-        fontSize: fontSize,
-        fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
+          fontSize: fontSize,
+          color: textColor,
+          fontWeight: isBold ? FontWeight.bold :FontWeight.normal
+
       ),
+
     );
   }
 }
