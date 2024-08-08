@@ -7,5 +7,5 @@ import 'appText.dart';
 class Resource{
   static AppColor colors = AppColor();
   static AppText  texts = AppText();
-  static AppImages images =AppImages();
+  static AppImage images =AppImage();
 }

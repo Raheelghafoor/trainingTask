@@ -1,73 +1,68 @@
 import 'package:flutter/material.dart';
 import 'package:traning_task/Resource/resources.dart';
+
 class CustomTextField extends StatelessWidget {
+  final String labelText;
   final String hintText;
   final TextEditingController controller;
-  final IconData? prefixIcon;
-  final IconData? suffixIcon;
   final bool obscureText;
   final String? Function(String?)? validator;
   final TextInputType keyboardType;
-  final VoidCallback? onSuffixIconPressed;
   final Color hintTextColor;
-  final Color prefixIconColor;
-  final Color suffixIconColor;
+  final Color labelTextColor; // Add this parameter
 
   CustomTextField({
     super.key,
+    required this.labelText,
     required this.hintText,
     required this.controller,
-    this.prefixIcon,
-    this.suffixIcon,
     required this.obscureText,
     this.validator,
     required this.keyboardType,
-    this.onSuffixIconPressed,
     this.hintTextColor = Colors.grey,
-    this.prefixIconColor = Colors.grey,
-    this.suffixIconColor = Colors.grey,
+    this.labelTextColor = Colors.black, // Default to black
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      obscureText: obscureText,
-      keyboardType: keyboardType,
-      validator: validator,
-      decoration: InputDecoration(
-        hintText: hintText,
-        hintStyle: TextStyle(color: hintTextColor),
-        prefixIcon: prefixIcon != null
-            ? Icon(prefixIcon, color: prefixIconColor)
-            : null,
-        suffixIcon: suffixIcon != null
-            ? IconButton(
-          icon: Icon(suffixIcon, color: suffixIconColor),
-          onPressed: onSuffixIconPressed,
-        )
-            : null,
-        filled: true,
-        fillColor: Resource.colors.primaryColor,
-        errorStyle: TextStyle(fontSize: 15.0, color: Resource.colors.mainColor),
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.grey),
-          borderRadius: BorderRadius.circular(10.0),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          labelText,
+          style: TextStyle(color: labelTextColor),
         ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.grey),
-          borderRadius: BorderRadius.circular(10.0),
+        SizedBox(height: 5.0),
+        TextFormField(
+          controller: controller,
+          obscureText: obscureText,
+          keyboardType: keyboardType,
+          validator: validator,
+          decoration: InputDecoration(
+            hintText: hintText,
+            hintStyle: TextStyle(color: hintTextColor),
+            filled: true,
+            fillColor: Resource.colors.feild,
+            errorStyle: TextStyle(fontSize: 15.0, color: Resource.colors.mainColor),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            disabledBorder: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+          ),
         ),
-        errorBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.grey),
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        disabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.grey),
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-      ),
+      ],
     );
   }
 }
-
