@@ -36,6 +36,8 @@ class _AboutscreenState extends State<Aboutscreen> {
   Widget build(BuildContext context) {
     var appSize = MediaQuery.of(context).size;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+
       appBar: AppBar(
         backgroundColor: Resource.colors.whiteColor,
         leading: IconButton(
@@ -83,7 +85,7 @@ class _AboutscreenState extends State<Aboutscreen> {
                       hintText: "Tell people about yourself",
                       controller: emailController,
                       obscureText: false,
-                      validator: FieldValidator.validateEmail,
+                      validator: FieldValidator.validateName,
                       keyboardType: TextInputType.text,
                       hintTextColor: Resource.colors.gColor,
                       labelText: 'About',

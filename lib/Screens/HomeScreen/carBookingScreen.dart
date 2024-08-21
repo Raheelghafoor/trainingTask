@@ -593,6 +593,7 @@ class _CarBookingScreenState extends State<CarBookingScreen> {
                       Icons.arrow_forward_ios_rounded,
                       color: Resource.colors.mainColor,
                     ),
+
                   ),
                   activeColor: Colors.black26,
                   isFinished: isFinished,

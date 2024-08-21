@@ -15,6 +15,7 @@ class _HostScreenState extends State<HostScreen> {
   Widget build(BuildContext context) {
     var appSize = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Resource.colors.whiteColor,
       body: Column(
         children: [
           Image.asset(Resource.images.host),

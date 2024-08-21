@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:swipeable_button_view/swipeable_button_view.dart';
 import 'package:traning_task/CustomWidgets/customButton.dart';
-import 'package:traning_task/Screens/HomeScreen/homeScreen.dart';
 
 import '../../CustomWidgets/customText.dart';
 import '../../Resource/resources.dart';
+import '../AuthView/signInScreen.dart';
+import '../AuthView/signUpScreen.dart';
 
 class OverView extends StatefulWidget {
   const OverView({super.key});
@@ -20,6 +21,7 @@ class _OverViewState extends State<OverView> {
   Widget build(BuildContext context) {
     var appSize = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Resource.colors.whiteColor,
       body: Column(
         children: [
           Padding(
@@ -64,12 +66,18 @@ class _OverViewState extends State<OverView> {
                       color: Colors.grey,
                     ),
                   ),
-                  activeColor: Color(0xFF3C231D),
+                  activeColor:
+                  Color(0xFF3C231D),
                   isFinished: isFinished,
                   onWaitingProcess: () {
-                    Future.delayed(Duration(seconds: 2), () {
+                    Future.delayed(Duration(seconds: 1), () {
                       setState(() {
-                        isFinished = true;
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Register(),
+                          ),
+                        );
                       });
                     });
                   },
@@ -90,7 +98,7 @@ class _OverViewState extends State<OverView> {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => HomeScreen(),
+                        builder: (context) => SigninScreen(),
                       ),
                     );
                   },

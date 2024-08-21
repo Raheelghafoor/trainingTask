@@ -18,6 +18,7 @@ class _TripScreenState extends State<TripScreen> {
   Widget build(BuildContext context) {
     var appSize = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Resource.colors.whiteColor,
       body: Container(
         padding: const EdgeInsets.only(top: 40),
         alignment: Alignment.center,

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:traning_task/Resource/resources.dart';
-
 class CustomSearchContainer extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;

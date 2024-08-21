@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:traning_task/CustomWidgets/customText.dart';
 import 'package:traning_task/Screens/HomeScreen/Drawer/About/aboutScreen.dart';
 import 'package:traning_task/Screens/HomeScreen/homeScreen.dart';
-
+import '../../../CustomWidgets/customAddVehicles.dart';
 import '../../../Resource/resources.dart';
 import '../Account/accountScreen.dart';
 import '../Notification/notificationScreen.dart';
 import 'ProfileEdit/profileEdit.dart';
+import 'Terms & conditions/terms&conditionScreen.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({super.key});
@@ -101,17 +102,32 @@ class _CustomDrawerState extends State<CustomDrawer> {
                 );
               },
             ),
+            ListTile(
+              leading: Icon(Icons.description, color: Resource.colors.textColor),
+              title: Text('Terms & conditions', style: TextStyle(color: Resource.colors.textColor)),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => TermsScreen()),
+                );
+              },
+            ),
             Padding(
               padding: const EdgeInsets.only(left: 4),
               child: ListTile(
                 title: Text('Help Center', style: TextStyle(color:Resource.colors.textColor)),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => CustomAddVehicles()),
+                  );
+                },
               ),
             ),
             ListTile(
               leading: Icon(Icons.support_agent_rounded, color: Resource.colors.textColor),
               title: Text('Contact support', style: TextStyle(color:Resource.colors.textColor)),
-              onTap: () {},
+              onTap: () {}
             ),
             ListTile(
               leading: Icon(Icons.padding, color: Resource.colors.textColor),

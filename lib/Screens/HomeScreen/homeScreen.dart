@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:traning_task/CustomWidgets/customCard.dart';
@@ -8,10 +7,11 @@ import 'package:traning_task/Resource/resources.dart';
 import 'package:traning_task/Screens/HomeScreen/chatScreen.dart';
 import 'package:traning_task/Screens/HomeScreen/favoriteScreen.dart';
 import 'package:traning_task/Screens/HomeScreen/tripScreen.dart';
-import '../../CustomWidgets/customText.dart';
 import 'Drawer/drawer.dart';
 import 'carBookingScreen.dart';
 import 'hostScreen.dart';
+import '../../CustomWidgets/customText.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -49,16 +49,14 @@ class _HomeScreenState extends State<HomeScreen> {
       final existingIndex = favoriteItems.indexWhere((element) => element['title'] == item['title']);
       if (existingIndex >= 0 ) {
         favoriteItems.removeAt(existingIndex);
-      }
-      else {
-        favoriteItems.add(item) ;
+      } else {
+        favoriteItems.add(item);
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    Size appSize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       bottomNavigationBar: CustomBottomNavigationBar(
@@ -69,6 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
 class HomeScreenContent extends StatefulWidget {
   final Function(Map<String, String>) onFavoriteToggle;
 
@@ -79,17 +78,18 @@ class HomeScreenContent extends StatefulWidget {
 }
 
 class _HomeScreenContentState extends State<HomeScreenContent> {
-  List carList = [
+  List<Map<String, String>> carList = [
     {"heading": "All"},
     {"heading": "Cars"},
     {"heading": "CUvs"},
     {"heading": "Trucks"},
     {"heading": "Vans"},
   ];
+
   List<Map<String, String>> cardList = [
     {
       "title": Resource.texts.gmc,
-      "rate":Resource.texts.rate,
+      "rate": Resource.texts.rate,
       "trip": Resource.texts.trip,
       "z6": Resource.texts.z6,
       "image": Resource.images.car1,
@@ -97,21 +97,48 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
     },
     {
       "title": Resource.texts.bmw,
-      "rate":Resource.texts.rate1,
+      "rate": Resource.texts.rate1,
       "trip": Resource.texts.trip1,
       "z6": Resource.texts.z6,
       "image": Resource.images.car2,
       "dayText": Resource.texts.$day,
     },
   ];
+
+  List<Map<String, String>> filteredCardList = [];
   int selectedIndex = 0;
+  TextEditingController searchController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    filteredCardList = cardList; // Initially show all cards
+
+    searchController.addListener(() {
+      _filterCards(searchController.text);
+    });
+  }
+
+  void _filterCards(String query) {
+    setState(() {
+      if (query.isEmpty) {
+        filteredCardList = cardList;
+      } else {
+        filteredCardList = cardList
+            .where((item) => item['title']!.toLowerCase().contains(query.toLowerCase()))
+            .toList();
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     var appSize = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Resource.colors.whiteColor,
       appBar: AppBar(
-        automaticallyImplyLeading: false,
+        backgroundColor: Resource.colors.whiteColor,
+          automaticallyImplyLeading: false,
           title: Row(
             children: [
               Image.asset(Resource.images.place,),
@@ -136,15 +163,17 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                 ],
               ),
               Spacer(),
-                 GestureDetector(onTap: () {
-                   Navigator.pushReplacement(
-                     context,
-                     MaterialPageRoute(
-                       builder: (context) => CustomDrawer(),
-                     ),
-                   );
-                 },
-                     child: SvgPicture.asset(Resource.images.drawer,height: 23,)),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => CustomDrawer(),
+                    ),
+                  );
+                },
+                child: SvgPicture.asset(Resource.images.drawer, height: 23,),
+              ),
             ],
           )
       ),
@@ -154,7 +183,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
         child: Column(
           children: [
             CustomSearchContainer(
-              controller: TextEditingController(),
+              controller: searchController,
               hintText: "Where you want to go...",
               icon: Icons.search,
             ),
@@ -195,7 +224,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
                         borderRadius: BorderRadius.circular(30),
                       ),
                       child: Text(
-                        carList[index]["heading"],
+                        carList[index]["heading"]!,
                         style: TextStyle(
                           color: selectedIndex == index
                               ? Colors.white
@@ -221,7 +250,7 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
               ],
             ),
             Column(
-              children: cardList.map((item) {
+              children: filteredCardList.map((item) {
                 return GestureDetector(
                   onTap: () {
                     Navigator.push(

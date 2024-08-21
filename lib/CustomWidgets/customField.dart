@@ -4,23 +4,23 @@ import 'package:traning_task/Resource/resources.dart';
 class CustomTextField extends StatelessWidget {
   final String labelText;
   final String hintText;
-  final TextEditingController controller;
+  final TextEditingController ?controller;
   final bool obscureText;
   final String? Function(String?)? validator;
   final TextInputType keyboardType;
   final Color hintTextColor;
-  final Color labelTextColor; // Add this parameter
+  final Color labelTextColor;
 
   CustomTextField({
     super.key,
     required this.labelText,
     required this.hintText,
-    required this.controller,
+    this.controller,
     required this.obscureText,
     this.validator,
     required this.keyboardType,
     this.hintTextColor = Colors.grey,
-    this.labelTextColor = Colors.black, // Default to black
+    this.labelTextColor = Colors.black,
   });
 
   @override

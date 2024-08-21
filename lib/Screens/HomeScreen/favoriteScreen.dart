@@ -16,6 +16,7 @@ class FavoritScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var appSize = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Resource.colors.whiteColor,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(top: 40,left: 12,right: 12,bottom: 12),

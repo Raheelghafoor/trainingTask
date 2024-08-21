@@ -10,7 +10,10 @@ class AppText{
   var password = "Password";
   var agree = "Agree with Terms & conditions";
   var signup = 'Sign up';
+  var complete = "Complete your profile";
   var orsIgn ="Or sign up with";
+  var verifyCode ="Verify Code";
+  var islocation ="Where is your location?";
   var alreadySign ="Already have an account? Sign in";
   var forgot = "Forgot password";
   var profile = "Complete your profile";
