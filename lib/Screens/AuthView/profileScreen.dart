@@ -11,7 +11,8 @@ import '../../Utils/validator.dart';
 import 'otpScreen.dart';
 
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+  final String email, password,password2;
+  const ProfileScreen({super.key, required this.email, required this.password, required this.password2});
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -19,34 +20,43 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   TextEditingController nameController = TextEditingController();
+  TextEditingController numberController = TextEditingController();
+
 
   UserProfile? userProfile;
   bool isLoading = true;
 
-  @override
-  void initState() {
-    super.initState();
-    fetchProfile();
-  }
-
-  Future<void> fetchProfile() async {
-    final url = Uri.parse('https://expresscarr.pythonanywhere.com/api/user/profile/');
+  Future<void> submitDetails(String name, String number) async {
     try {
-      final response = await http.get(url);
-      if (response.statusCode == 200) {
-        final jsonData = json.decode(response.body);
-        setState(() {
-          userProfile = UserProfile.fromJson(jsonData);
-          isLoading = false;
-        });
+      final response = await http.post(
+        Uri.parse("https://expresscarr.pythonanywhere.com/api/user/register/"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, dynamic>{
+          'email': widget.email,
+          'password': widget.password,
+          'password2': widget.password2,
+          'contact': number,
+          'name': name,
+          'role': 'user',
+          'device_token': '',
+          'tc': 'True',
+          'is_registered': 'false',
+        }),
+      );
+
+      if (response.statusCode == 201) {
+        print("Successfull: ${response.statusCode} - ${response.body}");
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) =>  OtpScreen()),
+        );
       } else {
-        throw Exception('Failed to load profile');
+        print("Error: ${response.statusCode} - ${response.body}");
       }
     } catch (e) {
-      print('Error fetching profile: $e');
-      setState(() {
-        isLoading = false;
-      });
+      print("Error: ${e.toString()}");
     }
   }
 
@@ -55,9 +65,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     var appSize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
-      body: isLoading
-          ? Center(child: CircularProgressIndicator())
-          : SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: SizedBox(
@@ -106,6 +114,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
                 IntlPhoneField(
+                  controller: numberController,
                   decoration: InputDecoration(
                     counterText: "",
                     filled: true,
@@ -123,7 +132,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 SizedBox(height: appSize.height * 0.08),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => OtpScreen()));
+                    submitDetails(
+                      nameController.text.toString(),
+                      numberController.text.toString(),
+                    );
                   },
                   child: Container(
                     height: 55,
@@ -192,3 +204,5 @@ class UserProfile {
     );
   }
 }
+
+

@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:traning_task/Screens/AuthView/profileScreen.dart';
 import 'package:traning_task/Screens/HomeScreen/homeScreen.dart';
@@ -6,7 +5,6 @@ import '../../CustomWidgets/CustomText.dart';
 import '../../CustomWidgets/customField.dart';
 import '../../Resource/resources.dart';
 import '../../Utils/validator.dart';
-import 'package:http/http.dart' as http;
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
@@ -18,49 +16,24 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  TextEditingController nameController = TextEditingController();
-  TextEditingController password2Controller = TextEditingController();
-  TextEditingController contactController = TextEditingController();
-  TextEditingController deviceTokenController = TextEditingController();
+
 
   bool _isPasswordVisible = false;
   bool _isChecked = false;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  void signup() async {
-    try {
-      final response = await http.post(
-        Uri.parse("https://expresscarr.pythonanywhere.com/api/user/register/"),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode({
-          'email': emailController.text,
-          'name': nameController.text,
-          'password': passwordController.text,
-          'password2': password2Controller.text,
-          'contact': contactController.text,
-          'role': 'user',
-          'device_token': deviceTokenController.text,
-          'tc': _isChecked.toString(),
-          'is_registered': false,
-        }),
-      );
-
-      if (response.statusCode == 201) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const ProfileScreen()),
-        );
-        print("Signup successful: ${response.statusCode}");
-      } else {
-        print("Unsuccessful response: ${response.statusCode}");
-        print("Response body: ${response.body}");
-      }
-    } catch (e) {
-      print("Error: ${e.toString()}");
-    }
+  void signup(String email, String password) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ProfileScreen(
+          email: email,
+          password: password,
+          password2: password,
+        ),
+      ),
+    );
   }
+
 
   void _toggleCheckbox(bool? value) {
     setState(() {
@@ -126,16 +99,7 @@ class _RegisterState extends State<Register> {
                   labelText: 'Email',
                   labelTextColor: Resource.colors.textColor,
                 ),
-                SizedBox(height: appSize.height * 0.02),
-                CustomTextField(
-                  hintText: "name",
-                  controller: nameController,
-                  obscureText: false,
-                  validator: FieldValidator.validateName,
-                  keyboardType: TextInputType.text,
-                  labelText: 'Name',
-                  labelTextColor: Resource.colors.textColor,
-                ),
+
                 SizedBox(height: appSize.height * 0.02),
                 CustomTextField(
                   hintText: "********",
@@ -147,35 +111,7 @@ class _RegisterState extends State<Register> {
                   labelTextColor: Resource.colors.textColor,
                 ),
                 SizedBox(height: appSize.height * 0.02),
-                CustomTextField(
-                  hintText: "********",
-                  controller: password2Controller,
-                  obscureText: !_isPasswordVisible,
-                  validator: FieldValidator.validatePassword,
-                  keyboardType: TextInputType.text,
-                  labelText: 'Confirm Password',
-                  labelTextColor: Resource.colors.textColor,
-                ),
-                SizedBox(height: appSize.height * 0.02),
-                CustomTextField(
-                  hintText: "Contact",
-                  controller: contactController,
-                  obscureText: false,
-                  validator: FieldValidator.validatePassword,
-                  keyboardType: TextInputType.text,
-                  labelText: 'Contact',
-                  labelTextColor: Resource.colors.textColor,
-                ),
-                SizedBox(height: appSize.height * 0.02),
-                CustomTextField(
-                  hintText: "Device Token",
-                  controller: deviceTokenController,
-                  obscureText: false,
-                  validator: FieldValidator.validatePassword,
-                  keyboardType: TextInputType.text,
-                  labelText: 'Device Token',
-                  labelTextColor: Resource.colors.textColor,
-                ),
+
                 SizedBox(height: appSize.height * 0.01),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -201,7 +137,12 @@ class _RegisterState extends State<Register> {
                 ),
                 SizedBox(height: appSize.height * 0.05),
                 GestureDetector(
-                  onTap: signup,
+                  onTap: (){
+                    signup(
+                        emailController.text.toString(),
+                        passwordController.text.toString(),
+                    );
+                  },
                   child: Container(
                     height: 55,
                     width: 390,
@@ -282,6 +223,7 @@ Widget _buildCircleIcon(String imagePath) {
     ),
   );
 }
+
 
 
 

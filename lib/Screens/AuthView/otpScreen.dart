@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../CustomWidgets/CustomText.dart';
 import '../../Resource/resources.dart';
 import '../HomeScreen/homeScreen.dart';
 import 'locationScreen.dart';
+import 'package:http/http.dart' as http;
+
 
 class OtpScreen extends StatefulWidget {
   const OtpScreen({super.key});
@@ -14,6 +18,31 @@ class OtpScreen extends StatefulWidget {
 
 class _OtpScreenState extends State<OtpScreen> {
   TextEditingController otpController = TextEditingController();
+  Future<void> submitDetails(String name, String number) async {
+    try {
+      final response = await http.post(
+        Uri.parse("https://expresscarr.pythonanywhere.com/api/user/register/"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode(<String, dynamic>{
+           "code" : "",
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        print("Successfull: ${response.statusCode} - ${response.body}");
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) =>  LocationScreen()),
+        );
+      } else {
+        print("Error: ${response.statusCode} - ${response.body}");
+      }
+    } catch (e) {
+      print("Error: ${e.toString()}");
+    }
+  }
   @override
   Widget build(BuildContext context) {
     var appSize = MediaQuery.of(context).size;
