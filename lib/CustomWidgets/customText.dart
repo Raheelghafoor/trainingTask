@@ -10,11 +10,11 @@ class CustomText extends StatelessWidget {
 
 
   CustomText({
-    required this.title,
-    required this.textColor,
-    required this.fontSize,
-    required this.textAlign,
-    required this.isBold});
+  required this.title,
+  required this.textColor,
+  required this.fontSize,
+      required this.textAlign,
+      required this.isBold});
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +22,15 @@ class CustomText extends StatelessWidget {
       title,
       textAlign: textAlign,
       style: TextStyle(
-          fontSize: fontSize,
-          color: textColor,
-          fontWeight: isBold ? FontWeight.bold :FontWeight.normal
+        fontSize: fontSize,
+        color: textColor,
+        fontWeight: isBold ? FontWeight.bold :FontWeight.normal
 
       ),
 
     );
   }
 }
+
+
+
