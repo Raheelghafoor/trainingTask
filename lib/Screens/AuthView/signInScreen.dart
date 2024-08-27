@@ -5,6 +5,7 @@ import 'package:traning_task/Screens/HomeScreen/homeScreen.dart';
 import '../../CustomWidgets/CustomText.dart';
 import '../../CustomWidgets/customField.dart';
 import '../../Resource/resources.dart';
+import '../../Services/ApiBaseServices/apiBaseServices.dart';
 import '../../Utils/validator.dart';
 import 'package:http/http.dart' as http;
 
@@ -22,25 +23,15 @@ class _SigninScreenState extends State<SigninScreen> {
   bool _isLoading = false;
   String? _errorMessage;
 
-  void signup(String email, String password) async {
-    if (email.isEmpty || password.isEmpty) {
-      setState(() {
-        _errorMessage = "Please enter both email and password.";
-      });
-      return;
-    }
 
-    setState(() {
-      _isLoading = true;
-      _errorMessage = null;
-    });
 
+  Future<void> signup(String email, String password) async {
     try {
-      var response = await http.post(
-        Uri.parse("https://expresscarr.pythonanywhere.com/api/user/login/"),
-        body: {'email': email, 'password': password},
-      );
-
+      var response = await ApiService(
+          baseUrl: "https://expresscarr.pythonanywhere.com/api/user/")
+          .postRequest("login/", <String, dynamic>{
+        'email': email, 'password': password
+      });
       if (response.statusCode == 200) {
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => HomeScreen()));
@@ -63,6 +54,50 @@ class _SigninScreenState extends State<SigninScreen> {
       });
     }
   }
+
+
+  //
+  // void signup(String email, String password) async {
+  //   if (email.isEmpty || password.isEmpty) {
+  //     setState(() {
+  //       _errorMessage = "Please enter both email and password.";
+  //     });
+  //     return;
+  //   }
+  //
+  //   setState(() {
+  //     _isLoading = true;
+  //     _errorMessage = null;
+  //   });
+  //
+  //   try {
+  //     var response = await http.post(
+  //       Uri.parse("https://expresscarr.pythonanywhere.com/api/user/login/"),
+  //       body: {'email': email, 'password': password},
+  //     );
+  //
+  //     if (response.statusCode == 200) {
+  //       Navigator.pushReplacement(
+  //           context, MaterialPageRoute(builder: (context) => HomeScreen()));
+  //       print("Login successful:  ${response.statusCode}");
+  //     } else {
+  //       setState(() {
+  //         _errorMessage = "Login failed. Please check your email & password";
+  //       });
+  //       print("Unsuccessful response: ${response.statusCode}");
+  //       print("Response body: ${response.body}");
+  //     }
+  //   } catch (e) {
+  //     setState(() {
+  //       _errorMessage = "An error occurred. Please try again.";
+  //     });
+  //     print("Error: ${e.toString()}");
+  //   } finally {
+  //     setState(() {
+  //       _isLoading = false;
+  //     });
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
