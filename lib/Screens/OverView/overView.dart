@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:swipeable_button_view/swipeable_button_view.dart';
-
-
 import '../../CustomWidgets/customButton.dart';
 import '../../CustomWidgets/customText.dart';
 import '../../Resource/resources.dart';

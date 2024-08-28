@@ -1,11 +1,10 @@
-
 import 'package:animated_rating_stars/animated_rating_stars.dart';
 import 'package:flutter/material.dart';
 import 'package:swipeable_button_view/swipeable_button_view.dart';
 
-
 import '../../CustomWidgets/customText.dart';
 import '../../Resource/resources.dart';
+import 'ChatAdmin/chatAdmin.dart';
 import 'homeScreen.dart';
 
 class CarBookingScreen extends StatefulWidget {
@@ -41,6 +40,17 @@ class _CarBookingScreenState extends State<CarBookingScreen> {
   Widget build(BuildContext context) {
     var appSize = MediaQuery.of(context).size;
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.pushReplacement(context,MaterialPageRoute(builder: (context)=> CustomChatView (data: {
+            'name': 'Raheel Ghafoor',
+          'contact': '1234567890',
+          'profilePhoto': 'https://fastly.picsum.photos/id/318/200/300.jpg?hmac=WEC_ft7NGxXgRDHWhj1tz7_gmAOrnI9d5IiS98juw8I',
+          },)));
+        },
+        backgroundColor: Resource.colors.gColor,
+        child: Icon(Icons.message,color: Colors.white,),
+      ),
       body: ListView(
         children: [
           Stack(

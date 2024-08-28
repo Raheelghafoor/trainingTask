@@ -181,7 +181,6 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
         padding: const EdgeInsets.only(top: 40, right: 10, left: 10),
         physics: BouncingScrollPhysics(),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CustomSearchContainer(
               controller: searchController,
@@ -189,12 +188,16 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
               icon: Icons.search,
             ),
             SizedBox(height: appSize.height * 0.030),
-            CustomText(
-              title: Resource.texts.categories,
-              textColor: Resource.colors.textColor,
-              fontSize: appSize.height * 0.025,
-              textAlign: TextAlign.start,
-              isBold: false,
+            Row(
+              children: [
+                CustomText(
+                  title: Resource.texts.categories,
+                  textColor: Resource.colors.textColor,
+                  fontSize: appSize.height * 0.025,
+                  textAlign: TextAlign.start,
+                  isBold: false,
+                ),
+              ],
             ),
             SizedBox(height: appSize.height * 0.030),
             Container(
@@ -235,12 +238,16 @@ class _HomeScreenContentState extends State<HomeScreenContent> {
               ),
             ),
             SizedBox(height: appSize.height * 0.030),
-            CustomText(
-              title: Resource.texts.available,
-              textColor: Resource.colors.textColor,
-              fontSize: appSize.height * 0.025,
-              textAlign: TextAlign.start,
-              isBold: false,
+            Row(
+              children: [
+                CustomText(
+                  title: Resource.texts.available,
+                  textColor: Resource.colors.textColor,
+                  fontSize: appSize.height * 0.025,
+                  textAlign: TextAlign.start,
+                  isBold: false,
+                ),
+              ],
             ),
             Column(
               children: filteredCardList.map((item) {

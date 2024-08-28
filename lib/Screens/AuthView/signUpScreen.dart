@@ -3,9 +3,8 @@ import 'package:training_task/Screens/AuthView/profileScreen.dart';
 import '../../CustomWidgets/CustomText.dart';
 import '../../CustomWidgets/customField.dart';
 import '../../Resource/resources.dart';
-import '../../Utills/validator.dart';
+import '../../Utils/validator.dart';
 import '../HomeScreen/homeScreen.dart';
-
 
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);

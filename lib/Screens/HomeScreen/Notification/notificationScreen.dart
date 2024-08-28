@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-
 import '../../../CustomWidgets/customText.dart';
 import '../../../Resource/resources.dart';
 import '../Drawer/drawer.dart';

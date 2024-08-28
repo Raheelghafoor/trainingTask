@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../CustomWidgets/CustomText.dart';
 import '../../../CustomWidgets/customAddVehicles.dart';
 import '../../../Resource/resources.dart';

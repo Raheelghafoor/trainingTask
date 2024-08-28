@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../CustomWidgets/customField.dart';
 import '../../../CustomWidgets/customText.dart';
 import '../../../Resource/resources.dart';
-
-import '../../../Utills/validator.dart';
+import '../../../Utils/validator.dart';
 import '../Drawer/drawer.dart';
 
 class AccountScreen extends StatefulWidget {

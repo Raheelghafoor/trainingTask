@@ -5,9 +5,8 @@ import 'package:training_task/Screens/AuthView/signInScreen.dart';
 import '../../CustomWidgets/CustomText.dart';
 import '../../CustomWidgets/customField.dart';
 import '../../Resource/resources.dart';
-import '../../Utills/validator.dart';
+import '../../Utils/validator.dart';
 import '../HomeScreen/homeScreen.dart';
-
 
 class ForgetScreen extends StatefulWidget {
   const ForgetScreen({super.key});

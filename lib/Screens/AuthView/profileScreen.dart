@@ -3,15 +3,18 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl_phone_field/intl_phone_field.dart';
+
 import '../../CustomWidgets/CustomText.dart';
 import '../../CustomWidgets/customField.dart';
 import '../../Resource/resources.dart';
-import '../../Utills/validator.dart';
+import '../../Services/ApiBaseServices/apiBaseServices.dart';
+import '../../Utils/validator.dart';
 import 'otpScreen.dart';
 
 class ProfileScreen extends StatefulWidget {
   final String email, password,password2;
   const ProfileScreen({super.key, required this.email, required this.password, required this.password2});
+
 
   @override
   State<ProfileScreen> createState() => _ProfileScreenState();
@@ -21,35 +24,29 @@ class _ProfileScreenState extends State<ProfileScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController numberController = TextEditingController();
 
-
   UserProfile? userProfile;
   bool isLoading = true;
 
   Future<void> submitDetails(String name, String number) async {
     try {
-      final response = await http.post(
-        Uri.parse("https://expresscarr.pythonanywhere.com/api/user/register/"),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-        body: jsonEncode(<String, dynamic>{
-          'email': widget.email,
-          'password': widget.password,
-          'password2': widget.password2,
-          'contact': number,
-          'name': name,
-          'role': 'user',
-          'device_token': '',
-          'tc': 'True',
-          'is_registered': 'false',
-        }),
-      );
-
+      var response = await ApiService(
+          baseUrl: "https://expresscarr.pythonanywhere.com/api/user/")
+          .postRequest("register/", <String, dynamic>{
+        "email": widget.email,
+        "name": name,
+        "password": widget.password,
+        "password2": widget.password2,
+        "contact": number,
+        "role": "user",
+        "device_token": "655646646565656",
+        "tc": "True",
+        "is_registered": true
+      });
       if (response.statusCode == 201) {
         print("Successfull: ${response.statusCode} - ${response.body}");
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) =>  OtpScreen()),
+          MaterialPageRoute(builder: (context) =>  OtpScreen(email:widget.email)),
         );
       } else {
         print("Error: ${response.statusCode} - ${response.body}");
@@ -59,8 +56,44 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
   }
 
+
+  // Future<void> submitDetails(String name, String number) async {
+  //   try {
+  //     final response = await http.post(
+  //       Uri.parse("https://expresscarr.pythonanywhere.com/api/user/register/"),
+  //       headers: <String, String>{
+  //         'Content-Type': 'application/json; charset=UTF-8',
+  //       },
+  //       body: jsonEncode(<String, dynamic>{
+  //         'email': widget.email,
+  //         'password': widget.password,
+  //         'password2': widget.password2,
+  //         'contact': number,
+  //         'name': name,
+  //         'role': 'user',
+  //         'device_token': '',
+  //         'tc': 'True',
+  //         'is_registered': 'false',
+  //       }),
+  //     );
+  //
+  //     if (response.statusCode == 201) {
+  //       print("Successfull: ${response.statusCode} - ${response.body}");
+  //       Navigator.push(
+  //         context,
+  //         MaterialPageRoute(builder: (context) =>  OtpScreen(email:widget.email)),
+  //       );
+  //     } else {
+  //       print("Error: ${response.statusCode} - ${response.body}");
+  //     }
+  //   } catch (e) {
+  //     print("Error: ${e.toString()}");
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
+    final signupProvider = ApiService;
     var appSize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,

@@ -4,7 +4,6 @@ import '../../../../Resource/resources.dart';
 import '../drawer.dart';
 
 
-
 class TermsScreen extends StatefulWidget {
   const TermsScreen({super.key});
 
