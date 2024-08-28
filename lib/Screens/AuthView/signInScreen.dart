@@ -30,7 +30,8 @@ class _SigninScreenState extends State<SigninScreen> {
       var response = await ApiService(
           baseUrl: "https://expresscarr.pythonanywhere.com/api/user/")
           .postRequest("login/", <String, dynamic>{
-        'email': email, 'password': password
+        'email': email,
+        'password': password,
       });
       if (response.statusCode == 200) {
         Navigator.pushReplacement(

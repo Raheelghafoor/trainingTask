@@ -56,41 +56,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
   }
 
-
-  // Future<void> submitDetails(String name, String number) async {
-  //   try {
-  //     final response = await http.post(
-  //       Uri.parse("https://expresscarr.pythonanywhere.com/api/user/register/"),
-  //       headers: <String, String>{
-  //         'Content-Type': 'application/json; charset=UTF-8',
-  //       },
-  //       body: jsonEncode(<String, dynamic>{
-  //         'email': widget.email,
-  //         'password': widget.password,
-  //         'password2': widget.password2,
-  //         'contact': number,
-  //         'name': name,
-  //         'role': 'user',
-  //         'device_token': '',
-  //         'tc': 'True',
-  //         'is_registered': 'false',
-  //       }),
-  //     );
-  //
-  //     if (response.statusCode == 201) {
-  //       print("Successfull: ${response.statusCode} - ${response.body}");
-  //       Navigator.push(
-  //         context,
-  //         MaterialPageRoute(builder: (context) =>  OtpScreen(email:widget.email)),
-  //       );
-  //     } else {
-  //       print("Error: ${response.statusCode} - ${response.body}");
-  //     }
-  //   } catch (e) {
-  //     print("Error: ${e.toString()}");
-  //   }
-  // }
-
   @override
   Widget build(BuildContext context) {
     final signupProvider = ApiService;
