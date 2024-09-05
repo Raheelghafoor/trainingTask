@@ -2,9 +2,9 @@ import 'package:animated_rating_stars/animated_rating_stars.dart';
 import 'package:flutter/material.dart';
 import 'package:swipeable_button_view/swipeable_button_view.dart';
 import 'package:traning_task/Resource/resources.dart';
-import 'package:traning_task/Screens/HomeScreen/ChaatAdmin/chatAdmin.dart';
 
 import '../../CustomWidgets/customText.dart';
+import 'ChatView/chatView.dart';
 import 'homeScreen.dart';
 
 class CarBookingScreen extends StatefulWidget {
